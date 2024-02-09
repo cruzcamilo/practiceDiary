@@ -17,3 +17,5 @@
 local.properties
 /buildSrc/build/tmp/jar/MANIFEST.MF
 /buildSrc/build/libs/buildSrc.jar
+/buildSrc/build/kotlin-dsl
+/buildSrc/build/

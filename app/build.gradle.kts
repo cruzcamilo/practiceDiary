@@ -1,6 +1,8 @@
 plugins {
     id(libs.plugins.androidApplication.get().pluginId)
     id(libs.plugins.kotlinAndroid.get().pluginId)
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -42,11 +44,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-//    packaging {
-//        resources {
-//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//        }
-//    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -62,6 +64,10 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.navigation.compose)
+
+    //Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 
     // Test
     testImplementation(libs.junit)

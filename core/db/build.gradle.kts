@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.devToolsKsp)
+    id ("kotlin-kapt")
+    alias(libs.plugins.daggerHilt)
 }
 
 android {
@@ -36,6 +38,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core:common"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -45,6 +49,10 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
     implementation (libs.androidx.room.ktx)
+
+    //Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

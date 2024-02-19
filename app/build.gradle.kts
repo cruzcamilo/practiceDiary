@@ -53,6 +53,11 @@ android {
 
 dependencies {
 
+    // Project
+    implementation(project(":core:common"))
+    implementation(project(":feature:home:ui"))
+    implementation(project(":feature:diary_entry:ui"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 

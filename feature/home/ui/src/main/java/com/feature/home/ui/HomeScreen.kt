@@ -26,26 +26,33 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.core.common.models.EntryModel
 
 @Composable
-@Preview
-fun HomeScreen() {
+fun HomeScreen(homeViewModel: HomeViewModel) {
+
+    val showDialog: Boolean by homeViewModel.showDialog.observeAsState(false)
+
     Scaffold(
         topBar = { MyTopBar() },
-        floatingActionButton = { FabButton() }
+        floatingActionButton = { FabButton { homeViewModel.onFabPressed() } }
         ) { padding ->
         FirstTimeUserScreen(padding)
-//        DiaryEntry(padding)
+        AddDiaryDialog(
+            show = showDialog,
+            onDismiss = { homeViewModel.onDialogClose() },
+            viewModel = homeViewModel
+        )
     }
 }
 
@@ -104,36 +111,84 @@ fun MyTopBar() {
 }
 
 @Composable
-fun FabButton() {
-    FloatingActionButton(onClick = {
-        // llamar al viewmodel para actualizar el valor de show dialog
-    }) {
+fun FabButton(onClick: () -> Unit) {
+    FloatingActionButton(
+        onClick = { onClick() }
+    ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "FAB")
     }
 }
 
 @Composable
-fun AddDiaryEntry(show: Boolean, onDismiss: ()-> Unit) {
-    var myTask by remember { mutableStateOf("") }
+fun AddDiaryDialog(
+    show: Boolean,
+    onDismiss: ()-> Unit,
+    viewModel: HomeViewModel
+) {
+    var title by remember { mutableStateOf("") }
+    var initTempo by remember { mutableStateOf("") }
+    var targetTempo by remember { mutableStateOf("") }
+
     if (show) {
         Dialog(onDismissRequest = { onDismiss() }) {
-            Column(Modifier.fillMaxWidth()) {
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(text = "Add an Entry")
-                Spacer(modifier = Modifier.size(16.dp))
+                Spacer()
+                Text(text = "Title")
                 TextField(
-                    value = myTask,
-                    onValueChange = { myTask = it },
+                    value = title,
+                    onValueChange = { title = it },
                     singleLine = true,
                     maxLines = 1
                 )
-                Spacer(modifier = Modifier.size(16.dp))
-                Button(onClick = {
-//                    onEntryAdded(myTask)
-                    // llamar al viewModel para guardar la entry
-                }, modifier = Modifier.fillMaxWidth()) {
+                Spacer()
+
+                Text(text = "Init Tempo")
+                TextField(
+                    value = initTempo,
+                    onValueChange = { initTempo = it },
+                    singleLine = true,
+                    maxLines = 1
+                )
+                Spacer()
+                Text(text = "Target Tempo")
+                TextField(
+                    value = targetTempo,
+                    onValueChange = { targetTempo = it },
+                    singleLine = true,
+                    maxLines = 1
+                )
+                Spacer()
+                Button(
+                    enabled = isAddEntryEnabled(title, initTempo, targetTempo),
+                    onClick = {
+                        viewModel.onAddEntry(
+                            EntryModel(
+                                title = title,
+                                initTempo = initTempo.toInt(),
+                                targetTempo = targetTempo.toInt()
+                            )
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth()) {
                     Text(text = "Añadir tarea")
                 }
             }
         }
     }
+}
+
+fun isAddEntryEnabled(title: String, initTempo: String, targetTempo: String): Boolean {
+    return title.isNotEmpty() && initTempo.isNotEmpty() && targetTempo.isNotEmpty()
+}
+
+@Composable
+fun Spacer() {
+    Spacer(modifier = Modifier.size(16.dp))
 }

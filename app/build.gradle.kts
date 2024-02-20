@@ -59,7 +59,6 @@ dependencies {
     implementation(project(":feature:diary_entry:ui"))
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Compose
     implementation(libs.androidx.activity.compose)

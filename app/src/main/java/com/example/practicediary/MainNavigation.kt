@@ -6,15 +6,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.core.common.models.Routes
 import com.feature.diary.entry.ui.navigation.entryScreen
+import com.feature.home.ui.navigation.createEntryScreen
 import com.feature.home.ui.navigation.homeScreen
 
 @Composable
 fun MainNavigation(
     navController: NavHostController = rememberNavController(),
 ) {
-    NavHost(navController = navController, startDestination = Routes.Home.routes ) {
-        homeScreen()
+    NavHost(navController = navController, startDestination = Routes.Home.route ) {
+        homeScreen { navController.navigate(Routes.CreateEntry.route) }
+        createEntryScreen { navController.navigateUp() }
         entryScreen()
     }
-
 }

@@ -1,8 +1,6 @@
 package com.feature.home.ui
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.core.common.models.EntryModel
@@ -16,22 +14,23 @@ class HomeViewModel@Inject constructor(
     private val addEntryUseCase: AddEntryUseCase
 ):ViewModel() {
 
-    private val _showDialog = MutableLiveData<Boolean>()
-    val showDialog: LiveData<Boolean> = _showDialog
+    var navigateToCreateEntry: () -> Unit = {}
+    var navigateBackToHome: () -> Unit = {}
 
     fun onFabPressed() {
-        _showDialog.value = true
-    }
-
-    fun onDialogClose() {
-        _showDialog.value = false
+        navigateToCreateEntry()
     }
 
     fun onAddEntry(entryModel: EntryModel) {
         viewModelScope.launch {
-            addEntryUseCase.invoke(entryModel)
+//            addEntryUseCase(entryModel)
             Log.d("ViewModel", "Adding Task")
+            navigateBackToHome()
         }
+    }
+
+    fun isAddEntryEnabled(title: String, initTempo: String, targetTempo: String): Boolean {
+        return title.isNotEmpty() && initTempo.isNotEmpty() && targetTempo.isNotEmpty()
     }
 
 }

@@ -6,11 +6,11 @@ import com.core.common.models.Routes
 import com.feature.diary.entry.ui.EntryScreen
 
 fun NavGraphBuilder.entryScreen(
-//    onNavigateToArticle: () -> Unit
+//    onUpdateNavigateBack: () -> Unit
 ) {
-    composable(Routes.DetailEntry.routes) {
+    composable(Routes.DetailEntry.route) {
         EntryScreen(
-//            onNavigateToArticle = onNavigateToArticle
+//            onUpdateNavigateBack = onUpdateNavigateBack
         )
     }
 }

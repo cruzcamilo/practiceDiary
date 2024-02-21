@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class EntryRepository @Inject constructor(private val entryDao: EntryDao) {
 
-    val tasks: Flow<List<EntryModel>> =
+    val entries: Flow<List<EntryModel>> =
         entryDao.getEntries().map { items ->
             items.map {
                 EntryModel(

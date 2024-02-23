@@ -15,9 +15,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
 
-    @Provides
-    fun provideEntryDao(todoDatabase: PracticeDiaryDatabase): EntryDao = todoDatabase.entryDao()
-
     @Singleton
     @Provides
     fun providePracticeDiaryDatabase(@ApplicationContext appContext: Context): PracticeDiaryDatabase {

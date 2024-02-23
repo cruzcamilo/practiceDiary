@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.core.db"
+    namespace = "com.feature.home"
     compileSdk = 34
 
     defaultConfig {
@@ -38,11 +38,10 @@ android {
 
 dependencies {
 
+//    api(project(":feature:home:ui"))
+    implementation(project(":core:db"))
+    implementation(project(":feature:home:data"))
     implementation(project(":feature:home:domain"))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -54,6 +53,9 @@ dependencies {
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

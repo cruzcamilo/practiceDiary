@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+    // Project modules
+    implementation(project(":feature:home"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

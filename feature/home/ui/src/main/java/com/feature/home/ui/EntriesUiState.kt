@@ -1,6 +1,6 @@
 package com.feature.home.ui
 
-import com.core.common.models.EntryModel
+import com.feature.home.domain.model.EntryModel
 
 sealed interface EntriesUiState {
     object Loading : EntriesUiState

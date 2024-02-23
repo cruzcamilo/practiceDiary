@@ -2,7 +2,7 @@ package com.feature.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.core.common.models.EntryModel
+import com.feature.home.domain.model.EntryModel
 import com.feature.home.domain.usecase.AddEntryUseCase
 import com.feature.home.domain.usecase.GetEntriesUseCase
 import com.feature.home.ui.EntriesUiState.Success

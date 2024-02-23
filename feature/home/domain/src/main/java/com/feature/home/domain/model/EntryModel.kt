@@ -1,4 +1,4 @@
-package com.core.common.models
+package com.feature.home.domain.model
 
 data class EntryModel(
     val id: Int = System.currentTimeMillis().hashCode(),

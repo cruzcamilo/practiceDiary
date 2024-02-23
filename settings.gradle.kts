@@ -15,6 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "PracticeDiary"
 include(":app")
+include(":feature:home")
 include(":feature:home:data")
 include(":feature:home:domain")
 include(":feature:home:ui")

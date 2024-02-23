@@ -1,10 +1,9 @@
 package com.feature.home.domain.usecase
 
-import com.core.common.models.EntryModel
-import com.core.db.di.EntryRepository
+import com.feature.home.domain.model.EntryModel
+import com.feature.home.domain.repository.EntryRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class GetEntriesUseCase @Inject constructor(private val entryRepository: EntryRepository) {
+class GetEntriesUseCase (private val entryRepository: EntryRepository) {
     operator fun invoke(): Flow<List<EntryModel>> = entryRepository.entries
 }

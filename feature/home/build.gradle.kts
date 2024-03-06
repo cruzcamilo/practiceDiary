@@ -36,11 +36,9 @@ android {
 }
 
 dependencies {
-
-//    api(project(":feature:home:ui"))
-    implementation(project(":core:db"))
-    implementation(project(":feature:home:data"))
-    implementation(project(":feature:home:domain"))
+    implementation(projects.core.db)
+    implementation(projects.feature.home.data)
+    implementation(projects.feature.home.domain)
 
     // Room
     implementation(libs.androidx.room.runtime)

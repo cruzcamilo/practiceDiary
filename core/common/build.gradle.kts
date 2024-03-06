@@ -39,10 +39,6 @@ android {
 }
 
 dependencies {
-
-    // Project modules
-    implementation(project(":feature:home"))
-
     // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.boom))

@@ -2,7 +2,6 @@ package com.core.db.di
 
 import android.content.Context
 import androidx.room.Room
-import com.core.db.EntryDao
 import com.core.db.PracticeDiaryDatabase
 import dagger.Module
 import dagger.Provides

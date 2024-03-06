@@ -1,7 +1,6 @@
-package com.core.db.di
+package com.feature.home.data
 
 import com.core.db.EntryDao
-import com.core.db.EntryEntity
 import com.feature.home.domain.model.EntryModel
 import com.feature.home.domain.repository.EntryRepository
 import kotlinx.coroutines.flow.Flow
@@ -10,17 +9,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class EntryRepository @Inject constructor(private val entryDao: EntryDao): EntryRepository {
+class EntryRepositoryImpl @Inject constructor(private val entryDao: EntryDao): EntryRepository {
 
     override val entries: Flow<List<EntryModel>> =
         entryDao.getEntries().map { items ->
             items.map {
-                EntryModel(
-                    it.id,
-                    it.title,
-                    it.initTempo,
-                    it.targetTempo
-                )
+                it.toDomain()
             }
         }
 
@@ -35,8 +29,4 @@ class EntryRepository @Inject constructor(private val entryDao: EntryDao): Entry
     override suspend fun delete(taskModel: EntryModel) {
         entryDao.deleteEntry(taskModel.toData())
     }
-}
-
-fun EntryModel.toData() : EntryEntity {
-    return EntryEntity(id = id, title = title, initTempo = initTempo, targetTempo = targetTempo)
 }

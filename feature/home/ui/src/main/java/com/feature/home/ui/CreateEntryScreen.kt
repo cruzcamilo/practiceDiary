@@ -105,8 +105,8 @@ fun CreateEntry(viewModel: HomeViewModel) {
                 viewModel.onAddEntry(
                     EntryModel(
                         title = title,
-                        initTempo = initTempo.toInt(),
-                        targetTempo = targetTempo.toInt()
+                        initTempo = initTempo,
+                        targetTempo = targetTempo
                     )
                 )
             },

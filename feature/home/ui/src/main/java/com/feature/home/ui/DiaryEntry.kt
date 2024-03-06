@@ -53,7 +53,7 @@ fun DiaryEntry(entryModel: EntryModel) {
                 })
 
             Text(
-                text = entryModel.initTempo.toString(),
+                text = entryModel.initTempo,
                 fontSize = 16.sp,
                 modifier = Modifier.constrainAs(currentTempo) {
                     top.linkTo(currentTempoLabel.bottom)
@@ -71,7 +71,7 @@ fun DiaryEntry(entryModel: EntryModel) {
                 })
 
             Text(
-                text = entryModel.targetTempo.toString(),
+                text = entryModel.targetTempo,
                 fontSize = 16.sp,
                 modifier = Modifier.constrainAs(targetTempo) {
                     top.linkTo(targetTempoLabel.bottom)
@@ -86,5 +86,5 @@ fun DiaryEntry(entryModel: EntryModel) {
 @Preview
 @Composable
 fun DiaryEntryPreview() {
-    DiaryEntry(EntryModel(1, "Guitar Solo", 80, 100))
+    DiaryEntry(EntryModel(1, "Guitar Solo", "80", "100"))
 }

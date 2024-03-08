@@ -34,13 +34,12 @@ fun CreateEntryScreen(
 ) {
     initializeViewModelValues(homeViewModel, onEntryCreated)
     Scaffold(
-        topBar = { MyTopBar() },
+        //topBar = { MyTopBar() },
         ) { padding ->
         Box(
             Modifier
                 .padding(padding)
                 .fillMaxSize(),
-
             contentAlignment = Alignment.Center
         ) {
             CreateEntry(homeViewModel)

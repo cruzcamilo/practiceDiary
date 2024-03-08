@@ -7,7 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
@@ -25,10 +28,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.feature.home.domain.model.EntryModel
+import ui.theme.Purple40
 
 @Composable
 fun HomeScreen(
@@ -49,7 +54,7 @@ fun HomeScreen(
     }
 
     Scaffold(
-        topBar = { MyTopBar() },
+        //topBar = { MyTopBar() },
         floatingActionButton = { FabButton { homeViewModel.onFabPressed() } }
         ) { padding ->
         when(uiState) {
@@ -60,7 +65,7 @@ fun HomeScreen(
                 if (entries.isEmpty()) {
                     NoEntriesScreen(padding)
                 } else {
-                    EntriesGridLayout(padding = padding, entries = entries)
+                    EntriesGridLayout(entries = entries)
                 }
             }
         }
@@ -90,30 +95,28 @@ private fun NoEntriesScreen(padding: PaddingValues) {
 }
 
 @Composable
-private fun EntriesGridLayout(padding: PaddingValues, entries: List<EntryModel>) {
-    Box(
-        Modifier
-            .padding(padding)
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
+private fun EntriesGridLayout(entries: List<EntryModel>) {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            modifier = Modifier.align(Alignment.Center),
+            contentPadding = PaddingValues(8.dp),
+            content = {
+                items(entries.size) {
+                    DiaryEntry(entryModel = entries[it])
+                }
+            })
         Log.d("Home", "Title ${entries.first().title}")
-        // Replace with lazy column and real layout
-        entries.toString()
-        Text(
-            text = "You have ${entries.size} entries",
-            fontSize = 14.sp
-        )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyTopBar() {
     TopAppBar(
         title = { Text(text = "Practice Diary", color = Color.White) },
         modifier = Modifier.background(Color.Blue),
-//        colors = TopAppBarDefaults.topAppBarColors(containerColor = Purple40)
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Blue)
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Purple40)
     )
 }
 

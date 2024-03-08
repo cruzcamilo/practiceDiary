@@ -1,8 +1,10 @@
 package com.feature.home.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -20,17 +22,21 @@ import ui.theme.EntryItem
 fun DiaryEntry(entryModel: EntryModel) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(),
+            .width(200.dp)
+            .padding(8.dp)
+            .background(color = EntryItem)
+            .height(200.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = EntryItem
         )
-
     ) {
         ConstraintLayout(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .background(color = EntryItem)
+                .padding(8.dp)
+                .fillMaxSize()
         ) {
             val (title, currentTempoLabel, currentTempo, targetTempoLabel, targetTempo) = createRefs()
             Text(
@@ -44,17 +50,17 @@ fun DiaryEntry(entryModel: EntryModel) {
                 })
 
             Text(
-                text = "Current Tempo",
-                fontSize = 16.sp,
+                text = "Init bpm",
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(currentTempoLabel) {
-                    top.linkTo(title.bottom, margin = 16.dp)
-                    start.linkTo(parent.start, margin = 24.dp)
+                    top.linkTo(title.bottom, margin = 24.dp)
+                    start.linkTo(parent.start, margin = 4.dp)
                 })
 
             Text(
                 text = entryModel.initTempo,
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 modifier = Modifier.constrainAs(currentTempo) {
                     top.linkTo(currentTempoLabel.bottom)
                     start.linkTo(currentTempoLabel.start, )
@@ -62,17 +68,17 @@ fun DiaryEntry(entryModel: EntryModel) {
                 })
 
             Text(
-                text = "Target Tempo",
-                fontSize = 16.sp,
+                text = "Target bpm",
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(targetTempoLabel) {
-                    top.linkTo(title.bottom, margin = 16.dp)
-                    end.linkTo(parent.end, margin = 24.dp)
+                    top.linkTo(title.bottom, margin = 24.dp)
+                    end.linkTo(parent.end, margin = 4.dp)
                 })
 
             Text(
                 text = entryModel.targetTempo,
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 modifier = Modifier.constrainAs(targetTempo) {
                     top.linkTo(targetTempoLabel.bottom)
                     start.linkTo(targetTempoLabel.start, )

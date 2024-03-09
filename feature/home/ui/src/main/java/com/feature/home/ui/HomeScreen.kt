@@ -116,16 +116,6 @@ private fun EntriesGridLayout(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MyTopBar() {
-    TopAppBar(
-        title = { Text(text = "Practice Diary", color = Color.White) },
-        modifier = Modifier.background(Color.Blue),
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Purple40)
-    )
-}
-
 @Composable
 fun FabButton(onClick: () -> Unit) {
     FloatingActionButton(

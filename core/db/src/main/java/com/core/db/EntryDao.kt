@@ -12,6 +12,9 @@ interface EntryDao {
     @Query("SELECT * from EntryEntity")
     fun getEntries(): Flow<List<EntryEntity>>
 
+    @Query("SELECT * FROM EntryEntity WHERE id = :entryId")
+    fun getEntryById(entryId: Int): Flow<EntryEntity>
+
     @Insert
     suspend fun addEntry(entry: EntryEntity)
 

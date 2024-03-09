@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(projects.feature.home.domain)
     implementation(projects.core.db)
 

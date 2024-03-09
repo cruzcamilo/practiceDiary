@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.devToolsKsp)
     id ("kotlin-kapt")
     alias(libs.plugins.daggerHilt)
 }
@@ -35,10 +36,17 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.common)
     implementation(projects.core.db)
+    implementation(projects.feature.diaryEntry.data)
     implementation(projects.feature.diaryEntry.domain)
 
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
+
+    //Hilt
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
 

@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.core.common.models.Routes
-import com.feature.diary.entry.ui.navigation.entryScreen
+import com.feature.diary.entry.navigation.entryScreen
 import com.feature.home.ui.navigation.createEntryScreen
 import com.feature.home.ui.navigation.homeScreen
 

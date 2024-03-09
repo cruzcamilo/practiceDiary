@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    id ("kotlin-kapt")
+    alias(libs.plugins.daggerHilt)
 }
 
 android {
@@ -40,8 +42,8 @@ android {
 }
 
 dependencies {
-
     implementation(projects.core.common)
+    implementation(projects.feature.diaryEntry.domain)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
@@ -55,7 +57,15 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.navigation.compose)
     debugImplementation(libs.androidx.ui.tooling)
-    
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.runtime.livedata)
+
+    //Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -25,7 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.feature.home.domain.model.EntryModel
+import com.core.common.EntriesUiState
+import com.core.common.models.EntryModel
 
 @Composable
 fun HomeScreen(

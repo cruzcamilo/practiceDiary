@@ -1,4 +1,4 @@
-package com.feature.home.domain.model
+package com.core.common.models
 
 data class EntryModel(
     val title: String,

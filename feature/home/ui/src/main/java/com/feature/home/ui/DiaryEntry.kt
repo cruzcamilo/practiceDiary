@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.feature.home.domain.model.EntryModel
+import com.core.common.models.EntryModel
 import ui.theme.EntryItem
 
 @OptIn(ExperimentalMaterial3Api::class)

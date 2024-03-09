@@ -52,10 +52,9 @@ android {
 }
 
 dependencies {
-
-    // Project
     implementation(projects.core.common)
     implementation(projects.feature.home)
+    implementation(projects.feature.diaryEntry)
     implementation(projects.feature.home.ui)
     implementation(projects.feature.diaryEntry.ui)
 

@@ -96,5 +96,5 @@ fun DiaryEntry(
 @Preview
 @Composable
 fun DiaryEntryPreview() {
-    DiaryEntry(EntryModel(1, "Guitar Solo", "80", "100"), {})
+    DiaryEntry(EntryModel("Guitar Solo", "80", "100"), {})
 }

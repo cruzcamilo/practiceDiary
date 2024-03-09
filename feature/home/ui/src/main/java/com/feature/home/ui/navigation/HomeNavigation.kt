@@ -4,9 +4,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.core.common.models.Routes
-import com.feature.home.ui.CreateEntryScreen
 import com.feature.home.ui.HomeScreen
 import com.feature.home.ui.HomeViewModel
+import com.feature.home.ui.createentry.CreateEntryRoute
 
 fun NavGraphBuilder.homeScreen(
     onNavigateToCreateEntry: () -> Unit,
@@ -23,13 +23,11 @@ fun NavGraphBuilder.homeScreen(
 }
 
 fun NavGraphBuilder.createEntryScreen(
-    onNavigateBack: () -> Unit
+    navigateBack: () -> Unit
 ) {
     composable(Routes.CreateEntry.route) {
-        val homeViewModel: HomeViewModel = hiltViewModel()
-        CreateEntryScreen(
-            homeViewModel = homeViewModel,
-            onEntryCreated = onNavigateBack
+        CreateEntryRoute(
+            navigateBack = navigateBack
         )
     }
 }

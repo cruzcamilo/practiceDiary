@@ -29,4 +29,8 @@ class EntryRepositoryImpl @Inject constructor(private val entryDao: EntryDao): E
     override suspend fun delete(taskModel: EntryModel) {
         entryDao.deleteEntry(taskModel.toData())
     }
+
+    override suspend fun deleteEntries() {
+        entryDao.deleteAllEntries()
+    }
 }

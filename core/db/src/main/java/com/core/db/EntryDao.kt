@@ -20,4 +20,7 @@ interface EntryDao {
 
     @Delete
     suspend fun deleteEntry(entry: EntryEntity)
+
+    @Query("DELETE FROM ENTRYENTITY")
+    suspend fun deleteAllEntries()
 }

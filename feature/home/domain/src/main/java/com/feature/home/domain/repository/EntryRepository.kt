@@ -8,4 +8,5 @@ interface EntryRepository {
     suspend fun add(taskModel: EntryModel)
     suspend fun update(taskModel: EntryModel)
     suspend fun delete(taskModel: EntryModel)
+    suspend fun deleteEntries()
 }

@@ -37,8 +37,9 @@ import ui.theme.Purple40
 
 @Composable
 fun HomeScreen(
+    homeViewModel: HomeViewModel,
     onNavigateToCreateEntry: () -> Unit,
-    homeViewModel: HomeViewModel
+    onEntryClick: (String) -> Unit,
 ) {
     initializeViewModelValues(homeViewModel, onNavigateToCreateEntry)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
@@ -54,7 +55,6 @@ fun HomeScreen(
     }
 
     Scaffold(
-        //topBar = { MyTopBar() },
         floatingActionButton = { FabButton { homeViewModel.onFabPressed() } }
         ) { padding ->
         when(uiState) {
@@ -65,7 +65,10 @@ fun HomeScreen(
                 if (entries.isEmpty()) {
                     NoEntriesScreen(padding)
                 } else {
-                    EntriesGridLayout(entries = entries)
+                    EntriesGridLayout(
+                        entries = entries,
+                        onEntryClick = onEntryClick,
+                    )
                 }
             }
         }
@@ -95,7 +98,10 @@ private fun NoEntriesScreen(padding: PaddingValues) {
 }
 
 @Composable
-private fun EntriesGridLayout(entries: List<EntryModel>) {
+private fun EntriesGridLayout(
+    entries: List<EntryModel>,
+    onEntryClick: (String) -> Unit,
+) {
     Box(modifier = Modifier.fillMaxWidth()) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -103,7 +109,7 @@ private fun EntriesGridLayout(entries: List<EntryModel>) {
             contentPadding = PaddingValues(8.dp),
             content = {
                 items(entries.size) {
-                    DiaryEntry(entryModel = entries[it])
+                    DiaryEntry(entries[it], onEntryClick)
                 }
             })
         Log.d("Home", "Title ${entries.first().title}")

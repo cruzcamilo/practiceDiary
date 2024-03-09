@@ -55,9 +55,9 @@ dependencies {
 
     // Project
     implementation(projects.core.common)
+    implementation(projects.feature.home)
     implementation(projects.feature.home.ui)
     implementation(projects.feature.diaryEntry.ui)
-    implementation(projects.feature.home)
 
     implementation(libs.androidx.core.ktx)
 
@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.navigation.compose)
+    debugImplementation(libs.androidx.ui.tooling)
 
     //Hilt
     implementation (libs.hilt.android)
@@ -80,6 +81,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.boom))
     androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
+
     debugImplementation(libs.ui.test.manifest)
 }

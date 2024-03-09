@@ -2,11 +2,11 @@ package com.feature.home.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,20 +18,24 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.feature.home.domain.model.EntryModel
 import ui.theme.EntryItem
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DiaryEntry(entryModel: EntryModel) {
+fun DiaryEntry(
+    entryModel: EntryModel,
+    onEntryClick: (String) -> Unit,
+) {
     Card(
         modifier = Modifier
-            .width(200.dp)
+            .size(200.dp)
             .padding(8.dp)
-            .background(color = EntryItem)
-            .height(200.dp),
+            .background(color = EntryItem),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
         ),
         colors = CardDefaults.cardColors(
             containerColor = EntryItem
-        )
+        ),
+        onClick = { onEntryClick(entryModel.id.toString()) }
     ) {
         ConstraintLayout(
             modifier = Modifier
@@ -92,5 +96,5 @@ fun DiaryEntry(entryModel: EntryModel) {
 @Preview
 @Composable
 fun DiaryEntryPreview() {
-    DiaryEntry(EntryModel(1, "Guitar Solo", "80", "100"))
+    DiaryEntry(EntryModel(1, "Guitar Solo", "80", "100"), {})
 }

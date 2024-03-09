@@ -14,7 +14,10 @@ fun MainNavigation(
     navController: NavHostController = rememberNavController(),
 ) {
     NavHost(navController = navController, startDestination = Routes.Home.route ) {
-        homeScreen { navController.navigate(Routes.CreateEntry.route) }
+        homeScreen(
+            onNavigateToCreateEntry = { navController.navigate(Routes.CreateEntry.route) },
+            onEntryClick = { navController.navigate(Routes.DetailEntry.createRoute(it)) }
+        )
         createEntryScreen { navController.navigateUp() }
         entryScreen()
     }

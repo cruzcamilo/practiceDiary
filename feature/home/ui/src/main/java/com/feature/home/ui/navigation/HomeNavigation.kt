@@ -9,13 +9,15 @@ import com.feature.home.ui.HomeScreen
 import com.feature.home.ui.HomeViewModel
 
 fun NavGraphBuilder.homeScreen(
-    onNavigateToCreateEntry: () -> Unit
+    onNavigateToCreateEntry: () -> Unit,
+    onEntryClick: (String) -> Unit,
 ) {
     composable(Routes.Home.route) {
         val homeViewModel: HomeViewModel = hiltViewModel()
         HomeScreen(
             homeViewModel = homeViewModel,
-            onNavigateToCreateEntry = { onNavigateToCreateEntry() }
+            onNavigateToCreateEntry = { onNavigateToCreateEntry() },
+            onEntryClick = onEntryClick
         )
     }
 }

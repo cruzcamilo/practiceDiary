@@ -8,9 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
-fun EntryScreen() {
+fun EntryScreen(id: String) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Entry Screen")
+        Text(text = "Entry Screen $id")
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun EntryScreenPreview() {
+    EntryScreen("1")
 }

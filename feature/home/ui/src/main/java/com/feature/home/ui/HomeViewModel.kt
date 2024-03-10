@@ -22,10 +22,4 @@ class HomeViewModel@Inject constructor(
         .catch { Error(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), EntriesUiState.Loading)
 
-    var navigateToCreateEntry: () -> Unit = {}
-
-    fun onFabPressed() {
-        navigateToCreateEntry()
-    }
-
 }

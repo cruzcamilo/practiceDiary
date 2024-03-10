@@ -21,20 +21,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.core.common.EntriesUiState
 import com.core.common.models.EntryModel
 
 @Composable
-fun HomeScreen(
-    homeViewModel: HomeViewModel,
-    onNavigateToCreateEntry: () -> Unit,
+fun HomeRoute(
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    navigateToCreateEntry: () -> Unit,
     onEntryClick: (String) -> Unit,
 ) {
-    initializeViewModelValues(homeViewModel, onNavigateToCreateEntry)
     val lifecycle = LocalLifecycleOwner.current.lifecycle
 
     val uiState by produceState<EntriesUiState>(
@@ -47,8 +48,21 @@ fun HomeScreen(
         }
     }
 
+    HomeScreen(
+        onFabPressed = navigateToCreateEntry,
+        uiState = uiState,
+        onEntryClick = onEntryClick
+    )
+}
+
+@Composable
+fun HomeScreen(
+    onFabPressed: () -> Unit,
+    uiState: EntriesUiState,
+    onEntryClick: (String) -> Unit
+) {
     Scaffold(
-        floatingActionButton = { FabButton { homeViewModel.onFabPressed() } }
+        floatingActionButton = { FabButton { onFabPressed() } }
     ) { padding ->
         when (uiState) {
             is EntriesUiState.Error -> {
@@ -60,7 +74,7 @@ fun HomeScreen(
             }
 
             is EntriesUiState.Success -> {
-                val entries = (uiState as EntriesUiState.Success).diaryEntries
+                val entries = uiState.diaryEntries
                 if (entries.isEmpty()) {
                     NoEntriesScreen(padding)
                 } else {
@@ -72,13 +86,6 @@ fun HomeScreen(
             }
         }
     }
-}
-
-private fun initializeViewModelValues(
-    homeViewModel: HomeViewModel,
-    onNavigateToCreateEntry: () -> Unit
-) {
-    homeViewModel.navigateToCreateEntry = onNavigateToCreateEntry
 }
 
 @Composable
@@ -122,4 +129,16 @@ fun FabButton(onClick: () -> Unit) {
     ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "FAB")
     }
+}
+
+@Composable
+@Preview
+fun HomeScreenPreview() {
+    val diariesEntries = listOf(EntryModel("Hey you", "90", "1000"))
+
+    HomeScreen(
+        onFabPressed = { },
+        uiState = EntriesUiState.Success(diariesEntries),
+        onEntryClick = {}
+    )
 }

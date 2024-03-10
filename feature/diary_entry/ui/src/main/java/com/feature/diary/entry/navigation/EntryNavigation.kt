@@ -7,13 +7,16 @@ import androidx.navigation.navArgument
 import com.core.common.models.Routes
 import com.feature.diary.entry.ui.EntryRoute
 
-fun NavGraphBuilder.entryScreen() {
+fun NavGraphBuilder.entryScreen(
+    onBackClick: () -> Unit,
+) {
     composable(
         route = Routes.DetailEntry.route,
         arguments = listOf(navArgument(Routes.DetailEntry.argument) { type = NavType.StringType })
     ) { backStackEntry ->
         EntryRoute(
-            id = backStackEntry.arguments?.getString(Routes.DetailEntry.argument).orEmpty()
+            id = backStackEntry.arguments?.getString(Routes.DetailEntry.argument).orEmpty(),
+            onBackClick = onBackClick
         )
     }
 }

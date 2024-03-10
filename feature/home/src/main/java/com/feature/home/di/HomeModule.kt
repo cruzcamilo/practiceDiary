@@ -5,6 +5,7 @@ import com.core.db.PracticeDiaryDatabase
 import com.feature.home.data.HomeEntryRepositoryImpl
 import com.feature.home.domain.repository.EntryRepository
 import com.feature.home.domain.usecase.AddEntryUseCase
+import com.feature.home.domain.usecase.DeleteEntriesUseCase
 import com.feature.home.domain.usecase.GetEntriesUseCase
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,9 @@ object HomeModule {
 
     @Provides
     fun provideGetEntriesUseCase(entryRepository: EntryRepository): GetEntriesUseCase = GetEntriesUseCase(entryRepository)
+
+    @Provides
+    fun provideDeleteEntriesUseCase(entryRepository: EntryRepository): DeleteEntriesUseCase = DeleteEntriesUseCase(entryRepository)
 
     @Provides
     fun provideEntryRepository(entryDao: EntryDao): EntryRepository = HomeEntryRepositoryImpl(entryDao)

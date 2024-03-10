@@ -19,6 +19,8 @@ fun MainNavigation(
             onEntryClick = { navController.navigate(Routes.DetailEntry.createRoute(it)) }
         )
         createEntryScreen { navController.navigateUp() }
-        entryScreen()
+        entryScreen(
+            onBackClick = { navController.popBackStack() }
+        )
     }
 }

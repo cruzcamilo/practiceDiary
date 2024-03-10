@@ -24,6 +24,6 @@ interface EntryDao {
     @Delete
     suspend fun deleteEntry(entry: EntryEntity)
 
-    @Query("DELETE FROM ENTRYENTITY")
+    @Query("DELETE FROM EntryEntity")
     suspend fun deleteAllEntries()
 }

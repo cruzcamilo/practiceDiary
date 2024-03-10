@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,7 +21,7 @@ import ui.theme.EntryItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DiaryEntry(
+fun DiaryEntryItem(
     entryModel: EntryModel,
     onEntryClick: (String) -> Unit,
 ) {
@@ -47,6 +48,7 @@ fun DiaryEntry(
                 text = entryModel.title,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.constrainAs(title) {
                     top.linkTo(parent.top, margin = 16.dp)
                     start.linkTo(parent.start)
@@ -96,5 +98,5 @@ fun DiaryEntry(
 @Preview
 @Composable
 fun DiaryEntryPreview() {
-    DiaryEntry(EntryModel("Guitar Solo", "80", "100"), {})
+    DiaryEntryItem(EntryModel("An awesome guitar solo", "80", "100"), {})
 }

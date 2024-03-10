@@ -102,10 +102,10 @@ private fun EntriesGridLayout(
             contentPadding = PaddingValues(8.dp),
             content = {
                 items(entries.size) {
-                    DiaryEntry(entries[it], onEntryClick)
+                    DiaryEntryItem(entries[it], onEntryClick)
                 }
-            })
-        Log.d("Home", "Title ${entries.first().title}")
+            }
+        )
     }
 }
 

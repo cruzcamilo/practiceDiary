@@ -56,7 +56,7 @@ fun DiaryEntryItem(
                 })
 
             Text(
-                text = "Init bpm",
+                text = "Current",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(currentTempoLabel) {
@@ -65,7 +65,7 @@ fun DiaryEntryItem(
                 })
 
             Text(
-                text = entryModel.initTempo,
+                text = "${entryModel.initTempo} bpm",
                 fontSize = 12.sp,
                 modifier = Modifier.constrainAs(currentTempo) {
                     top.linkTo(currentTempoLabel.bottom)
@@ -74,7 +74,7 @@ fun DiaryEntryItem(
                 })
 
             Text(
-                text = "Target bpm",
+                text = "Target",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(targetTempoLabel) {
@@ -83,7 +83,7 @@ fun DiaryEntryItem(
                 })
 
             Text(
-                text = entryModel.targetTempo,
+                text = "${entryModel.targetTempo} bpm",
                 fontSize = 12.sp,
                 modifier = Modifier.constrainAs(targetTempo) {
                     top.linkTo(targetTempoLabel.bottom)

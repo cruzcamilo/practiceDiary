@@ -30,7 +30,7 @@ import com.feature.home.ui.R
 @Composable
 fun CreateEntryRoute(
     createEntryViewModel: CreateEntryViewModel = hiltViewModel(),
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
 ) {
     CreateEntryScreen(
         title = createEntryViewModel.title,
@@ -41,7 +41,7 @@ fun CreateEntryRoute(
         onTargetTempoChanged = { createEntryViewModel.onTargetTempoChanged(it) },
         isButtonEnabled = createEntryViewModel.isButtonEnabled.value,
         onSubmit = { createEntryViewModel.onAddEntry() },
-        navigateBack = navigateBack
+        navigateBack = navigateBack,
     )
 }
 
@@ -55,11 +55,11 @@ fun CreateEntryScreen(
     onTargetTempoChanged: (String) -> Unit,
     isButtonEnabled: Boolean,
     onSubmit: () -> Unit,
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             Modifier
@@ -67,12 +67,12 @@ fun CreateEntryScreen(
                 .background(Color.White)
                 .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
                 fontSize = 24.sp,
-                text = stringResource(R.string.add_an_entry)
+                text = stringResource(R.string.add_an_entry),
             )
 
             Spacer()
@@ -83,7 +83,7 @@ fun CreateEntryScreen(
                 onValueChange = { onTitleChanged(it) },
                 singleLine = true,
                 maxLines = 1,
-                label = { Text(stringResource(R.string.title)) }
+                label = { Text(stringResource(R.string.title)) },
             )
 
             Spacer()
@@ -95,7 +95,7 @@ fun CreateEntryScreen(
                 onValueChange = { onInitTempoChanged(it) },
                 singleLine = true,
                 maxLines = 1,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
 
             Spacer()
@@ -107,7 +107,7 @@ fun CreateEntryScreen(
                 onValueChange = { onTargetTempoChanged(it) },
                 singleLine = true,
                 maxLines = 1,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
 
             Spacer(16.dp)
@@ -118,7 +118,7 @@ fun CreateEntryScreen(
                     onSubmit()
                     navigateBack()
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(text = stringResource(R.string.submit))
             }
@@ -141,6 +141,6 @@ fun CreateEntryScreenPreview() {
         onTargetTempoChanged = {},
         isButtonEnabled = true,
         onSubmit = {},
-        navigateBack = {}
+        navigateBack = {},
     )
 }

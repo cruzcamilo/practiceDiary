@@ -54,7 +54,7 @@ fun HomeRoute(
     val uiState by produceState<EntriesUiState>(
         initialValue = EntriesUiState.Loading,
         key1 = lifecycle,
-        key2 = homeViewModel
+        key2 = homeViewModel,
     ) {
         lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
             homeViewModel.uiState.collect { value = it }
@@ -65,7 +65,7 @@ fun HomeRoute(
         onFabPressed = navigateToCreateEntry,
         uiState = uiState,
         onEntryClick = onEntryClick,
-        onDeleteAll = { homeViewModel.deleteAll() }
+        onDeleteAll = { homeViewModel.deleteAll() },
     )
 }
 
@@ -96,14 +96,14 @@ fun HomeScreen(
                             Spacer(modifier = Modifier.weight(1f, true))
                             IconButton(
                                 modifier = Modifier.align(Alignment.CenterVertically),
-                                onClick = { openAlertDialog = true }
+                                onClick = { openAlertDialog = true },
                             ) {
                                 Icon(imageVector = Icons.Outlined.Delete, contentDescription = "delete")
                             }
                         }
                     }
                 },
-                floatingActionButton = { FabButton { onFabPressed() } }
+                floatingActionButton = { FabButton { onFabPressed() } },
             ) { padding ->
                 if (entries.isEmpty()) {
                     NoEntriesScreen()
@@ -111,7 +111,7 @@ fun HomeScreen(
                     DeleteConfirmationAlertDialog(
                         isVisible = openAlertDialog,
                         onDismiss = { openAlertDialog = false },
-                        onAccept = { onDeleteAll() }
+                        onAccept = { onDeleteAll() },
                     )
 
                     EntriesGridLayout(
@@ -130,11 +130,11 @@ private fun NoEntriesScreen() {
     Box(
         Modifier
             .fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = stringResource(R.string.empty_screen),
-            fontSize = 14.sp
+            fontSize = 14.sp,
         )
     }
 }
@@ -145,9 +145,12 @@ private fun EntriesGridLayout(
     entries: List<EntryModel>,
     onEntryClick: (String) -> Unit,
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(padding)) {
+    Box(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(padding),
+    ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.align(Alignment.Center),
@@ -156,7 +159,7 @@ private fun EntriesGridLayout(
                 items(entries.size) {
                     DiaryEntryItem(entries[it], onEntryClick)
                 }
-            }
+            },
         )
     }
 }
@@ -164,7 +167,7 @@ private fun EntriesGridLayout(
 @Composable
 fun FabButton(onClick: () -> Unit) {
     FloatingActionButton(
-        onClick = { onClick() }
+        onClick = { onClick() },
     ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "FAB")
     }
@@ -187,20 +190,20 @@ fun DeleteConfirmationAlertDialog(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        text = "Warning"
+                        text = "Warning",
                     )
                 },
                 text = {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        text = "Do you want to delete all entries?"
+                        text = "Do you want to delete all entries?",
                     )
                 },
                 dismissButton = {
                     Button(
                         modifier = Modifier.padding(end = 48.dp),
-                        onClick = { onDismiss() }
+                        onClick = { onDismiss() },
                     ) {
                         Text("Cancel")
                     }
@@ -224,7 +227,7 @@ fun HomeScreenPreview() {
         onFabPressed = { },
         uiState = EntriesUiState.Success(diariesEntries),
         onEntryClick = { },
-        onDeleteAll = { }
+        onDeleteAll = { },
     )
 }
 

@@ -30,7 +30,7 @@ fun EntryRoute(
     id: String,
     viewModel: EntryViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
-){
+) {
     viewModel.getEntryDetails(id)
 
     val entry by viewModel.entry.observeAsState()
@@ -60,59 +60,61 @@ fun EntryScreen(
     var targetTempo by remember { mutableStateOf(entry.targetTempo) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             modifier = Modifier.padding(8.dp),
             fontSize = 24.sp,
-            text = title
+            text = title,
         )
         EntryTextField(
             label = stringResource(R.string.title),
             value = title,
             isEnabled = isTextFieldEnabled,
-            onValueChanged = { title = it }
+            onValueChanged = { title = it },
         )
 
         EntryTextField(
             label = stringResource(R.string.init_tempo),
             value = initTempo,
             isEnabled = isTextFieldEnabled,
-            onValueChanged = { initTempo = it }
+            onValueChanged = { initTempo = it },
         )
 
         EntryTextField(
             label = stringResource(R.string.target_tempo),
             value = targetTempo,
             isEnabled = isTextFieldEnabled,
-            onValueChanged = { targetTempo = it }
+            onValueChanged = { targetTempo = it },
         )
 
         if (entryIntent == EntryIntent.Edit) {
             Button(
                 onClick = { onEdit() },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(text = "Edit")
             }
             Button(
                 onClick = { onBackClick() },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black,
-                ),
-                border = BorderStroke(width = 1.dp, color = Color.Gray)
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Black,
+                    ),
+                border = BorderStroke(width = 1.dp, color = Color.Gray),
             ) {
                 Text(text = "Back")
             }
         } else {
             Button(
                 onClick = { onSave(getEntry(entry, title, initTempo, targetTempo)) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(text = "Save")
             }
@@ -120,16 +122,15 @@ fun EntryScreen(
     }
 }
 
-
 private fun getEntry(
     entry: EntryModel,
     title: String,
     initTempo: String,
-    targetTempo: String
+    targetTempo: String,
 ) = entry.copy(
     title = title,
     initTempo = initTempo,
-    targetTempo = targetTempo
+    targetTempo = targetTempo,
 )
 
 @Composable
@@ -137,16 +138,17 @@ fun EntryTextField(
     label: String,
     value: String,
     isEnabled: Boolean,
-    onValueChanged: (String) -> Unit
+    onValueChanged: (String) -> Unit,
 ) {
     OutlinedTextField(
         label = { Text(text = label) },
         value = value,
         onValueChange = { onValueChanged(it) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp),
-        enabled = isEnabled
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+        enabled = isEnabled,
     )
 }
 
@@ -165,5 +167,6 @@ fun EntryScreenPreview() {
 
 sealed class EntryIntent {
     data object Edit : EntryIntent()
+
     data object Save : EntryIntent()
 }

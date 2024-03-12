@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -63,7 +64,8 @@ fun HomeRoute(
     HomeScreen(
         onFabPressed = navigateToCreateEntry,
         uiState = uiState,
-        onEntryClick = onEntryClick
+        onEntryClick = onEntryClick,
+        onDeleteAll = { homeViewModel.deleteAll() }
     )
 }
 
@@ -71,7 +73,8 @@ fun HomeRoute(
 fun HomeScreen(
     onFabPressed: () -> Unit,
     uiState: EntriesUiState,
-    onEntryClick: (String) -> Unit
+    onEntryClick: (String) -> Unit,
+    onDeleteAll: () -> Unit,
 ) {
     when (uiState) {
         is EntriesUiState.Error -> {
@@ -84,31 +87,33 @@ fun HomeScreen(
 
         is EntriesUiState.Success -> {
             val entries = uiState.diaryEntries
-            if (entries.isEmpty()) {
-                NoEntriesScreen()
-            } else {
-                var openAlertDialog by remember { mutableStateOf(false) }
+            var openAlertDialog by remember { mutableStateOf(false) }
 
-                DeleteConfirmationAlertDialog(
-                    isVisible = openAlertDialog,
-                    onDismiss = { openAlertDialog = false },
-                    onAccept = { openAlertDialog = false }
-                )
-
-                Scaffold(
-                    topBar = {
-                        NavigationBar {
+            Scaffold(
+                topBar = {
+                    if (entries.isNotEmpty()) {
+                        NavigationBar(modifier = Modifier.height(50.dp)) {
                             Spacer(modifier = Modifier.weight(1f, true))
                             IconButton(
-                                modifier = Modifier.align(Alignment.CenterVertically), 
+                                modifier = Modifier.align(Alignment.CenterVertically),
                                 onClick = { openAlertDialog = true }
                             ) {
                                 Icon(imageVector = Icons.Outlined.Delete, contentDescription = "delete")
                             }
                         }
-                    },
-                    floatingActionButton = { FabButton { onFabPressed() } }
-                ) { padding ->
+                    }
+                },
+                floatingActionButton = { FabButton { onFabPressed() } }
+            ) { padding ->
+                if (entries.isEmpty()) {
+                    NoEntriesScreen()
+                } else {
+                    DeleteConfirmationAlertDialog(
+                        isVisible = openAlertDialog,
+                        onDismiss = { openAlertDialog = false },
+                        onAccept = { onDeleteAll() }
+                    )
+
                     EntriesGridLayout(
                         padding = padding,
                         entries = entries,
@@ -218,7 +223,8 @@ fun HomeScreenPreview() {
     HomeScreen(
         onFabPressed = { },
         uiState = EntriesUiState.Success(diariesEntries),
-        onEntryClick = {}
+        onEntryClick = { },
+        onDeleteAll = { }
     )
 }
 

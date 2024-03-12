@@ -3,7 +3,7 @@
     <string name="empty_screen">Add a new entry to start tracking your practice</string>
     <string name="add_an_entry">Add an Entry</string>
     <string name="title">Title</string>
-    <string name="init_tempo">Init Tempo</string>
+    <string name="init_tempo">Current Tempo</string>
     <string name="target_tempo">Target Tempo</string>
     <string name="submit">Submit</string>
 </resources>

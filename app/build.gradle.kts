@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.practicediary"
+    namespace = "com.camcruz.practicediary"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.practicediary"
+        applicationId = "com.camcruz.practicediary"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

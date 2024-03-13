@@ -1,4 +1,4 @@
-package com.example.practicediary
+package com.camcruz.practicediary
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

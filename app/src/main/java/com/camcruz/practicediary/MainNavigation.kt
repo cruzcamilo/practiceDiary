@@ -1,4 +1,4 @@
-package com.example.practicediary
+package com.camcruz.practicediary
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

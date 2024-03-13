@@ -1,4 +1,4 @@
-package com.example.practicediary
+package com.camcruz.practicediary
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

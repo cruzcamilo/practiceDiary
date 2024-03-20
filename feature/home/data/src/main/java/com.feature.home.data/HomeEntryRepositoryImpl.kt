@@ -5,11 +5,11 @@ import com.core.db.EntryDao
 import com.feature.home.domain.repository.EntryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HomeEntryRepositoryImpl @Inject constructor(private val entryDao: EntryDao): EntryRepository {
+// TODO: Agregar data source
+class HomeEntryRepositoryImpl(private val entryDao: EntryDao): EntryRepository {
 
     override val entries: Flow<List<EntryModel>> =
         entryDao.getEntries().map { items ->

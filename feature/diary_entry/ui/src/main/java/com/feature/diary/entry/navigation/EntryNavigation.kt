@@ -13,9 +13,8 @@ fun NavGraphBuilder.entryScreen(
     composable(
         route = Routes.DetailEntry.route,
         arguments = listOf(navArgument(Routes.DetailEntry.argument) { type = NavType.StringType })
-    ) { backStackEntry ->
+    ) {
         EntryRoute(
-            id = backStackEntry.arguments?.getString(Routes.DetailEntry.argument).orEmpty(),
             onBackClick = onBackClick
         )
     }

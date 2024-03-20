@@ -31,9 +31,8 @@ import com.core.common.models.EntryModel
 
 @Composable
 fun EntryRoute(
-    id: String,
-    viewModel: EntryViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
+    viewModel: EntryViewModel = hiltViewModel(),
 ) {
 
     val lifecycle = LocalLifecycleOwner.current.lifecycle

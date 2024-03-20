@@ -40,7 +40,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.core.common.EntriesUiState
 import com.core.common.models.EntryModel
 
 @Composable

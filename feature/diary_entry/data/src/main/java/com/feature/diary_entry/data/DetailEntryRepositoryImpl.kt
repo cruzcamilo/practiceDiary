@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 
 class DetailEntryRepositoryImpl(private val entryDao: EntryDao): DetailEntryRepository {
 
-    override suspend fun getEntry(id: String): Flow<EntryModel> {
+    override fun getEntry(id: String): Flow<EntryModel> {
         return entryDao.getEntryById(Integer.valueOf(id)).map {
             it.toDomain()
         }

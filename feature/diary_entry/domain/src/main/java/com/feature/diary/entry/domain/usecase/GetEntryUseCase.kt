@@ -5,8 +5,5 @@ import com.feature.diary.entry.domain.repository.DetailEntryRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetEntryUseCase(private val detailEntryRepository: DetailEntryRepository) {
-
-    suspend operator fun invoke(entryId: String): Flow<EntryModel> {
-        return detailEntryRepository.getEntry(entryId)
-    }
+    operator fun invoke(entryId: String): Flow<EntryModel> = detailEntryRepository.getEntry(entryId)
 }

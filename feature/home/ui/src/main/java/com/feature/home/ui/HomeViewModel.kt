@@ -2,10 +2,10 @@ package com.feature.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.core.common.EntriesUiState
-import com.core.common.EntriesUiState.Success
+import com.core.common.models.EntryModel
 import com.feature.home.domain.usecase.DeleteEntriesUseCase
 import com.feature.home.domain.usecase.GetEntriesUseCase
+import com.feature.home.ui.EntriesUiState.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +22,7 @@ class HomeViewModel@Inject constructor(
 ):ViewModel() {
 
     val uiState: StateFlow<EntriesUiState> = getEntriesUseCase().map(::Success)
-        .catch { Error(it) }
+        .catch { Error(it).message }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), EntriesUiState.Loading)
 
     fun deleteAll() {
@@ -30,4 +30,10 @@ class HomeViewModel@Inject constructor(
             deleteEntriesUseCase.invoke()
         }
     }
+}
+
+sealed interface EntriesUiState {
+    object Loading : EntriesUiState
+    data class Error(val throwable: Throwable) : EntriesUiState
+    data class Success(val diaryEntries: List<EntryModel>) : EntriesUiState
 }

@@ -168,6 +168,8 @@ fun EntryTextField(
     OutlinedTextField(
         label = { Text(text = label) },
         value = value,
+        maxLines = 1,
+        singleLine = true,
         onValueChange = { onValueChanged(it) },
         modifier =
         Modifier

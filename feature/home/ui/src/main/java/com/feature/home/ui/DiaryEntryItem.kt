@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.widget.Guideline
 import com.core.common.models.EntryModel
 import ui.theme.EntryItem
 
@@ -44,6 +45,8 @@ fun DiaryEntryItem(
                 .fillMaxSize()
         ) {
             val (title, currentTempoLabel, currentTempo, targetTempoLabel, targetTempo) = createRefs()
+            val refGuideLine = createGuidelineFromStart(0.5f)
+
             Text(
                 text = entryModel.title,
                 fontSize = 20.sp,
@@ -61,7 +64,8 @@ fun DiaryEntryItem(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(currentTempoLabel) {
                     top.linkTo(title.bottom, margin = 24.dp)
-                    start.linkTo(parent.start, margin = 4.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(refGuideLine)
                 })
 
             Text(
@@ -69,8 +73,8 @@ fun DiaryEntryItem(
                 fontSize = 12.sp,
                 modifier = Modifier.constrainAs(currentTempo) {
                     top.linkTo(currentTempoLabel.bottom)
-                    start.linkTo(currentTempoLabel.start, )
-                    end.linkTo(currentTempoLabel.end, )
+                    start.linkTo(currentTempoLabel.start)
+                    end.linkTo(currentTempoLabel.end)
                 })
 
             Text(
@@ -79,7 +83,8 @@ fun DiaryEntryItem(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(targetTempoLabel) {
                     top.linkTo(title.bottom, margin = 24.dp)
-                    end.linkTo(parent.end, margin = 4.dp)
+                    start.linkTo(refGuideLine)
+                    end.linkTo(parent.end)
                 })
 
             Text(
@@ -87,8 +92,8 @@ fun DiaryEntryItem(
                 fontSize = 12.sp,
                 modifier = Modifier.constrainAs(targetTempo) {
                     top.linkTo(targetTempoLabel.bottom)
-                    start.linkTo(targetTempoLabel.start, )
-                    end.linkTo(targetTempoLabel.end, )
+                    start.linkTo(targetTempoLabel.start)
+                    end.linkTo(targetTempoLabel.end)
                 })
         }
     }

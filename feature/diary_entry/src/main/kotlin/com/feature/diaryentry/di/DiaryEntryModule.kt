@@ -4,7 +4,7 @@ import com.core.db.EntryDao
 import com.feature.diary.entry.domain.repository.DetailEntryRepository
 import com.feature.diary.entry.domain.usecase.GetEntryUseCase
 import com.feature.diary.entry.domain.usecase.UpdateEntryUseCase
-import com.feature.diary_entry.data.DetailEntryRepositoryImpl
+import com.feature.diary.entry.data.DetailEntryRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

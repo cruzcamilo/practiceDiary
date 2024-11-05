@@ -1,4 +1,4 @@
-package com.feature.diary_entry.data
+package com.feature.diary.entry.data
 
 import com.core.common.models.EntryModel
 import com.core.db.EntryDao

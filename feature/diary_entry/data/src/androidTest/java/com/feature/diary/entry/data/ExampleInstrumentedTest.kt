@@ -1,4 +1,4 @@
-package com.feature.diary_entry
+package com.feature.diary.entry.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

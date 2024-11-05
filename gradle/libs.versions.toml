@@ -20,6 +20,11 @@ ksp = "1.9.22-1.0.16"
 hilt-navigation-compose = "1.1.0"
 runtime-livedata = "1.6.1"
 ui-tooling = "1.6.2"
+androidxComposeCompiler = "1.5.8"
+androidGradlePlugin = "8.2.2"
+androidDesugarJdkLibs = "2.0.4"
+org-jetbrains-kotlin-android = "1.9.22"
+android-tools = "31.5.2"
 
 [libraries]
 
@@ -58,9 +63,22 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# build-logic dependencies
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "android-tools" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "org-jetbrains-kotlin-android" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 devToolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
+
+# Plugins defined by this project
+practicediary-android-application = { id = "practicediary.android.application", version = "unspecified" }
+practicediary-android-library = { id = "practicediary.android.library", version = "unspecified" }
+practicediary-android-library-compose = { id = "practicediary.android.library.compose", version = "unspecified" }
+practicediary-android-hilt = { id = "practicediary.android.hilt", version = "unspecified" }

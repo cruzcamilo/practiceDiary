@@ -1,4 +1,4 @@
-package com.core.feature_api
+package com.feature.diary.entry.data
 
 import org.junit.Test
 

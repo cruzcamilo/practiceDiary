@@ -1,18 +1,14 @@
 plugins {
-    id(libs.plugins.androidApplication.get().pluginId)
-    id(libs.plugins.kotlinAndroid.get().pluginId)
+    alias(libs.plugins.practicediary.android.application)
     id ("kotlin-kapt")
     alias(libs.plugins.daggerHilt)
 }
 
 android {
     namespace = "com.camcruz.practicediary"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.camcruz.practicediary"
-        minSdk = 26
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,13 +31,7 @@ android {
             isDebuggable = true
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
     buildFeatures {
         compose = true
     }

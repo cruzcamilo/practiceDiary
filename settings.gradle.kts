@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -14,6 +15,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "PracticeDiary"
+// https://issuetracker.google.com/issues/315023802
+gradle.startParameter.excludedTaskNames.add(":build-logic:convention:testClasses")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":feature:home")
@@ -25,4 +28,3 @@ include(":feature:diary_entry:domain")
 include(":feature:diary_entry:ui")
 include(":core:db")
 include(":core:common")
-include(":core:feature_api")

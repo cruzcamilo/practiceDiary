@@ -16,7 +16,7 @@ android {
 dependencies {
     // Compose
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.boom))
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)

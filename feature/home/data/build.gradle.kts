@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.practicediary.android.library)
-    id ("kotlin-kapt")
-    alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.practicediary.android.hilt)
 }
 
 android {
@@ -12,9 +11,6 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.feature.home.domain)
     implementation(projects.core.db)
-
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)

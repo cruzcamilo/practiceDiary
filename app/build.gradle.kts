@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.practicediary.android.application)
-    id ("kotlin-kapt")
-    alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.practicediary.android.hilt)
 }
 
 android {
@@ -56,7 +55,7 @@ dependencies {
 
     // Compose
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.boom))
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
@@ -64,15 +63,11 @@ dependencies {
     implementation(libs.navigation.compose)
     debugImplementation(libs.androidx.ui.tooling)
 
-    //Hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
-
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.boom))
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
 
     debugImplementation(libs.ui.test.manifest)

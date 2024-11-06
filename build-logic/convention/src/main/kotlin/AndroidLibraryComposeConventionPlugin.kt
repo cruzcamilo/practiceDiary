@@ -1,8 +1,5 @@
-import com.android.build.gradle.LibraryExtension
-import com.camcruz.practicediary.configuration.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.getByType
 
 class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -12,8 +9,8 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.android")
             }
 
-            val extension = extensions.getByType<LibraryExtension>()
-            configureAndroidCompose(extension)
+            /*val extension = extensions.getByType<LibraryExtension>()
+            configureAndroidCompose(extension)*/
         }
     }
 }
